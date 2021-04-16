@@ -1,0 +1,66 @@
+//Crear blockchain
+multichain-util create empresa
+
+//Conectarse a la blockchain
+multichaind empresa –daemon
+
+
+//En otra línea de comandos
+//Para crear vendedores
+multichain-cli empresa create stream vendedores "{}"
+
+//Para crear ganancias
+multichain-cli empresa create stream ganancias "{}"
+
+//Crear stream filters
+multichain-cli empresa create streamfilter filtroganacias "{}" "function filterstreamitem(){var gananciaIngresada=getfilterstreamitem();if (gananciaIngresada.keys.length!==1)return \"Las ganancias se deben y solo se deben registrar con una cedula\";if (gananciaIngresada.keys[0].length<1 || gananciaIngresada.keys[0] === null)return \"La cedula ingresada no debe estar vacia\";if (gananciaIngresada.format!=\"json\")return \"Solo se pueden ingresar ganancias en formato JSON\";var gananciaJSON = gananciaIngresada.data.json;var gananciaJSONLlaves = Object.keys(gananciaJSON);if(gananciaJSONLlaves.length !== 1)return \"Las ganancias deben tener y solamente tener el campo valor\";if ( (!gananciaJSON.hasOwnProperty(\"valor\")) || gananciaJSON.valor === null || (gananciaJSON.valor.length<1))return \"Las ganancias requieren del campo valor\";if(isNaN(gananciaJSON.valor))return \"El valor debe ser numerico\";}"
+multichain-cli empresa create streamfilter filtrovendedores "{}" "function filterstreamitem(){var vendedorIngresado=getfilterstreamitem();if (vendedorIngresado.keys.length!==1)return \"Los vendedores se deben y solo se deben registrar con una cedula\";if (vendedorIngresado.keys[0].length<1 || vendedorIngresado.keys[0] === null)return \"La cedula ingresada no debe estar vacia\";if (vendedorIngresado.format!=\"json\")return \"Solo se pueden ingresar vendedores en formato JSON\";var vendedorJSON = vendedorIngresado.data.json;var vendedorJSONLlaves = Object.keys(vendedorJSON);if(vendedorJSONLlaves.length !== 2)return \"Los vendedores deben tener y solamente tener el campo nombre y telefono\";if ( (!vendedorJSON.hasOwnProperty(\"nombre\")) || vendedorJSON.nombre === null || (vendedorJSON.nombre.length<1))return \"Los vendedores requieren del campo nombre\";if ( (!vendedorJSON.hasOwnProperty(\"telefono\")) || vendedorJSON.telefono === null || (vendedorJSON.telefono.length<1))return \"Los vendedores requieren del campo telefono\";}"
+
+//Obtener las dirreciones
+multichain-cli empresa getaddresses
+
+//Activar los smart filters
+multichain-cli empresa approvefrom [dirección] filtroganacias "{\"for\": \"ganancias\", \"approve\": true}"
+multichain-cli empresa approvefrom [dirección] filtrovendedores "{\"for\": \"vendedores\", \"approve\": true}"
+
+//Ingresar datos
+multichain-cli empresa publish vendedores "[\"123456\"]" "{\"json\":{\"nombre\":\"Juan\",\"telefono\":\"1234567\"}}"
+multichain-cli empresa publish ganancias "[\"123456\"]" "{\"json\":{\"valor\":\"50\"}}"
+multichain-cli empresa publish ganancias "[\"123456\"]" "{\"json\":{\"valor\":100}}"
+
+//Datos que deberían fallar
+//La clave está vacía
+multichain-cli empresa publish vendedores "[\"\"]" "{\"json\":{\"nombre\":\"Juan\",\"telefono\":\"1234567\"}}"
+multichain-cli empresa publish ganancias "[\"\"]" "{\"json\":{\"valor\":\"50\"}}"
+
+//Tienen más de una clave
+multichain-cli empresa publish vendedores "[\"123456\","\4343434\"]" "{\"json\":{\"nombre\":\"Juan\",\"telefono\":\"1234567\"}}"
+multichain-cli empresa publish ganancias "[\"123456\","\4343434\"]" "{\"json\":{\"valor\":\"50\"}}"
+
+//Datos no JSON
+multichain-cli empresa publish vendedores "[\"123456\"]" "{\"json\":{\"nombre\":\"Juan\",\"telefono\":\"1234567\"}}"
+multichain-cli empresa publish ganancias "[\"123456\"]" "{\"json\":{\"valor\":\"50\"}}"
+
+//Menos de los campos requeridos
+multichain-cli empresa publish vendedores "[\"123456\"]" "{\"json\":{\"nombre\":\"Juan\"}}"
+multichain-cli empresa publish ganancias "[\"123456\"]" "{\"json\":{}}"
+
+//Más de los campos requeridos
+multichain-cli empresa publish vendedores "[\"123456\"]" "{\"json\":{\"nombre\":\"Juan\",\"telefono\":\"1234567\",\"otro\":\"XD\"}}"
+multichain-cli empresa publish ganancias "[\"123456\"]" "{\"json\":{\"valor\":\"50\",\"otro\":\"XD\"}}"
+
+//Campos requeridos incorrectos
+multichain-cli empresa publish vendedores "[\"123456\"]" "{\"json\":{\"nom\":\"Juan\",\"telefono\":\"1234567\"}}"
+multichain-cli empresa publish ganancias "[\"123456\"]" "{\"json\":{\"dinero\":\"50\"}}"
+
+//Nos suscribimos a ambos para poder ver los resultados
+multichain-cli empresa subscribe vendedores
+multichain-cli empresa subscribe ganancias
+
+//Consultar las claves que hay en cada stream
+multichain-cli empresa liststreamkeys vendedores
+multichain-cli empresa liststreamkeys ganancias
+
+//Consultar datos por clave
+multichain-cli empresa liststreamkeyitems vendedores [clave]
+multichain-cli empresa liststreamkeyitems ganancias [clave]
