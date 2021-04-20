@@ -1,0 +1,26 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<GridPane fx:controller="app.controllers.IndexController" xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10"
+          vgap="10">
+    <padding>
+        <Insets top="25" right="25" bottom="25" left="25"/>
+    </padding>
+    <Text id="welcome-text"
+          text="Bienvenido a BD2-T2 Multichain"
+          GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="3"/>
+    <Text id="autores-text"
+          text="Autores: Santiago Valencia, Sebastián Rendón, Salomé Aristizabal"
+          GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="3"/>
+    <HBox GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="3" spacing="10">
+        <Button id="btn-consultar" onAction="#goToConsultar">Consultar
+        </Button>
+        <Button id="btn-vendedor" onAction="#goToVendedor">Registrar
+            vendedor
+        </Button>
+        <Button id="btn-ganancia" onAction="#goToGanancia">Registrar
+            ganancia
+        </Button>
+    </HBox>
+</GridPane>

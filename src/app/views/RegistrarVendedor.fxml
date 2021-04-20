@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="app.controllers.VendedorController" hgap="10" vgap="10" alignment="center">
+    <padding>
+        <Insets top="25" right="25" bottom="25" left="25"/>
+    </padding>
+    <Text GridPane.rowIndex="0">Registrar Vendedor</Text>
+    <Label text="Cédula:"
+           GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <TextField fx:id="cedulaInput"
+            GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    <Label text="Nombre:"
+           GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <TextField fx:id="nombreInput"
+            GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    <Label text="Teléfono:"
+           GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <TextField fx:id="telefonoInput"
+            GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+    <HBox spacing="10" alignment="bottom_right"
+          GridPane.columnIndex="1" GridPane.rowIndex="4">
+        <Button onAction="#goToHome">Volver al Inicio</Button>
+        <Button onAction="#createVendedor">Ingresar</Button>
+    </HBox>
+</GridPane>
