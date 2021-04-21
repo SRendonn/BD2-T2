@@ -28,31 +28,6 @@ multichain-cli empresa publish vendedores "[\"123456\"]" "{\"json\":{\"nombre\":
 multichain-cli empresa publish ganancias "[\"123456\"]" "{\"json\":{\"valor\":\"50\"}}"
 multichain-cli empresa publish ganancias "[\"123456\"]" "{\"json\":{\"valor\":100}}"
 
-//Datos que deberían fallar
-//La clave está vacía
-multichain-cli empresa publish vendedores "[\"\"]" "{\"json\":{\"nombre\":\"Juan\",\"telefono\":\"1234567\"}}"
-multichain-cli empresa publish ganancias "[\"\"]" "{\"json\":{\"valor\":\"50\"}}"
-
-//Tienen más de una clave
-multichain-cli empresa publish vendedores "[\"123456\","\4343434\"]" "{\"json\":{\"nombre\":\"Juan\",\"telefono\":\"1234567\"}}"
-multichain-cli empresa publish ganancias "[\"123456\","\4343434\"]" "{\"json\":{\"valor\":\"50\"}}"
-
-//Datos no JSON
-multichain-cli empresa publish vendedores "[\"123456\"]" "{\"json\":{\"nombre\":\"Juan\",\"telefono\":\"1234567\"}}"
-multichain-cli empresa publish ganancias "[\"123456\"]" "{\"json\":{\"valor\":\"50\"}}"
-
-//Menos de los campos requeridos
-multichain-cli empresa publish vendedores "[\"123456\"]" "{\"json\":{\"nombre\":\"Juan\"}}"
-multichain-cli empresa publish ganancias "[\"123456\"]" "{\"json\":{}}"
-
-//Más de los campos requeridos
-multichain-cli empresa publish vendedores "[\"123456\"]" "{\"json\":{\"nombre\":\"Juan\",\"telefono\":\"1234567\",\"otro\":\"XD\"}}"
-multichain-cli empresa publish ganancias "[\"123456\"]" "{\"json\":{\"valor\":\"50\",\"otro\":\"XD\"}}"
-
-//Campos requeridos incorrectos
-multichain-cli empresa publish vendedores "[\"123456\"]" "{\"json\":{\"nom\":\"Juan\",\"telefono\":\"1234567\"}}"
-multichain-cli empresa publish ganancias "[\"123456\"]" "{\"json\":{\"dinero\":\"50\"}}"
-
 //Nos suscribimos a ambos para poder ver los resultados
 multichain-cli empresa subscribe vendedores
 multichain-cli empresa subscribe ganancias
