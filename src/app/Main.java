@@ -16,7 +16,13 @@ public class Main extends Application {
 
     private static Scene scene;
     // el login y password se encuentra en %APPDATA%/Multichain/empresa/multichain.conf
-    public static CommandManager commandManager = new CommandManager("localhost", "4780", "multichainrpc", "GLpWPe7n3gTeyKYAaUNjPBdgNeWBx3a5E7uDWy3LeKrh");
+
+    /*
+    * Salomé: GLpWPe7n3gTeyKYAaUNjPBdgNeWBx3a5E7uDWy3LeKrh
+    * Sebastián: BHbz943UPzMkB5RFLVgcSjymEHaTmXjuUKN635UWgM3V
+    * */
+
+    public static CommandManager commandManager = new CommandManager("localhost", "4410", "multichainrpc", "BHbz943UPzMkB5RFLVgcSjymEHaTmXjuUKN635UWgM3V");
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -29,7 +35,7 @@ public class Main extends Application {
             commandManager.invoke(CommandElt.SUBSCRIBE, "vendedores");
             commandManager.invoke(CommandElt.SUBSCRIBE, "ganancias");
         } catch (MultichainException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Ocurrió un error tratando de suscribirse a los streams.");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Ocurrió un error tratando de suscribirse a los streams. Reinicie la aplicación y asegúrese de que el daemon esté corriendo.");
             alert.show();
         }
     }
