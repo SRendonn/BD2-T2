@@ -20,8 +20,8 @@ multichain-cli empresa create streamfilter filtrovendedores "{}" "function filte
 multichain-cli empresa getaddresses
 
 //Activar los smart filters
-multichain-cli empresa approvefrom [dirección] filtroganacias "{\"for\": \"ganancias\", \"approve\": true}"
-multichain-cli empresa approvefrom [dirección] filtrovendedores "{\"for\": \"vendedores\", \"approve\": true}"
+multichain-cli empresa approvefrom "1TxuLMC8XMHQ1f7w7vDSfNWhKAJivknvs5p68K" filtroganacias "{\"for\": \"ganancias\", \"approve\": true}"
+multichain-cli empresa approvefrom "1TxuLMC8XMHQ1f7w7vDSfNWhKAJivknvs5p68K" filtrovendedores "{\"for\": \"vendedores\", \"approve\": true}"
 
 //Ingresar datos
 multichain-cli empresa publish vendedores "[\"123456\"]" "{\"json\":{\"nombre\":\"Juan\",\"telefono\":\"1234567\"}}"

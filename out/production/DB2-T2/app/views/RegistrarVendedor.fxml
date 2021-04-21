@@ -27,6 +27,6 @@
     <HBox spacing="10" alignment="bottom_right"
           GridPane.columnIndex="1" GridPane.rowIndex="4">
         <Button onAction="#goToHome">Volver al Inicio</Button>
-        <Button onAction="#createVendedor">Registrar</Button>
+        <Button onAction="#createVendedor">Ingresar</Button>
     </HBox>
 </GridPane>

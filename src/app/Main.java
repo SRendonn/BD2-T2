@@ -16,7 +16,7 @@ public class Main extends Application {
 
     private static Scene scene;
     // el login y password se encuentra en %APPDATA%/Multichain/empresa/multichain.conf
-    public static CommandManager commandManager = new CommandManager("localhost", "4410", "multichainrpc", "BHbz943UPzMkB5RFLVgcSjymEHaTmXjuUKN635UWgM3V");
+    public static CommandManager commandManager = new CommandManager("localhost", "4780", "multichainrpc", "GLpWPe7n3gTeyKYAaUNjPBdgNeWBx3a5E7uDWy3LeKrh");
 
     @Override
     public void start(Stage stage) throws Exception {
